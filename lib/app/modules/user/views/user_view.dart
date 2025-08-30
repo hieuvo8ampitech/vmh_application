@@ -2,6 +2,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:vmh_application/app/helpers/constants.dart';
 import 'package:vmh_application/app/helpers/responsive.dart';
 
@@ -21,8 +22,13 @@ class UserView extends GetView<UserController> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(defaultPadding * 3),
-          child: Responsive.isDesktop(context) || Responsive.isTablet(context)
+          padding: EdgeInsets.symmetric(
+            vertical: defaultPadding * 3,
+            horizontal: Responsive.isTablet(context)
+                ? defaultPadding * 5
+                : defaultPadding * 3,
+          ),
+          child: Responsive.isDesktop(context)
               ? LargeTable(controller: controller)
               : SmallTable(controller: controller),
         ),
@@ -46,8 +52,14 @@ class SmallTable extends StatelessWidget {
           ),
           DataColumn2(
             label: Center(
-              child: ElevatedButton(onPressed: () {}, child: Icon(Icons.add)),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Responsive.isMobile(context)
+                    ? Icon(Icons.add)
+                    : Text('Tạo người dùng mới'),
+              ),
             ),
+            fixedWidth: Responsive.isMobile(context) ? 100 : 200,
           ),
         ],
         rows: controller.users
@@ -92,17 +104,13 @@ class LargeTable extends StatelessWidget {
             label: Text('Email', style: TextStyle(fontWeight: FontWeight.bold)),
             size: ColumnSize.L,
           ),
-          Responsive.isDesktop(context)
-              ? DataColumn2(
-                  label:
-                      Text('Vai trò', style: TextStyle(fontWeight: FontWeight.bold)),
-                  size: ColumnSize.S,
-                )
-              : DataColumn2(
-                  label: Text('Vai trò',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  size: ColumnSize.M,
-                ),
+          DataColumn2(
+            label: Text(
+              'Vai trò',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            fixedWidth: 100,
+          ),
           DataColumn2(
             label: Center(
               child: ElevatedButton(
