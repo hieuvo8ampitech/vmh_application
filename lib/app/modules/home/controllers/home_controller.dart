@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:vmh_application/app/data/tool.dart';
 import 'package:vmh_application/app/services/user_service.dart';
 
 class HomeController extends GetxController {
@@ -13,6 +14,17 @@ Map<String, dynamic>? _userProfile;
   final User? user = Supabase.instance.client.auth.currentUser;
   final RxString name = ''.obs;
   final RxBool isAdmin = false.obs;
+
+  final List<Tool> tools = [
+      Tool(
+        name: 'Đơn Hàng',
+        icon: Icons.add_chart,
+        onTap: () {
+          Get.toNamed('/order');
+        },
+      ),
+      Tool(name: 'Quản Lý Đơn', icon: Icons.assignment, onTap: () {}),
+    ];
 
   @override
   void onInit() async{
