@@ -2,12 +2,12 @@ import 'package:get/get.dart';
 import 'package:vmh_application/app/data/models.dart';
 
 class OrderController extends GetxController {
-  final List<ShippingLines> shippingLines = const [
+  final List<ShippingLines> shippingLines =  [
     ShippingLines(
-      lineID: 'flat_rate',
-      lineName: 'Flat Rate',
-      createdBy: '10.00',
-      createdDate: '2023-10-01',
+      shippingLinesID: '',
+      shippingLinesName: 'Miền Tây 2',
+      createdBy: 'Võ Lê Khang',
+      createdAt: DateTime.now(),
       status: 'active',
     ),
   ];

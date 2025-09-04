@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:vmh_application/app/data/tool.dart';
+import 'package:vmh_application/app/data/models.dart';
 import 'package:vmh_application/app/services/user_service.dart';
 
 class HomeController extends GetxController {
